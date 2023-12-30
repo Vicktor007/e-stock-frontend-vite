@@ -1,6 +1,7 @@
 .home {
   background-color: #030b6b;
-  height: 100dvh;
+  min-height: 100dvh;
+  max-height: 150dvh;
  
   
   & nav {
