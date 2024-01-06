@@ -24,4 +24,13 @@ export const SpinnerImg = ({classes}) => {
   );
 };
 
+export const LoaderDiv = ({classes}) => {
+  return (
+    <div className="loader-container">
+      <div className={` loaderDiv ${classes}`}>
+    </div>
+    </div>
+  );
+};
+
 export default Loader;

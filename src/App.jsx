@@ -22,6 +22,7 @@ import EditProfile from "./pages/profile/EditProfile";
 import Contact from "./pages/contact/Contact";
 import About from "./pages/about/About";
 import LimitedProductDetail from "./components/product/productDetail/LimitedProductDetails";
+import { LoaderDiv } from "./components/loader/Loader";
 
 axios.defaults.withCredentials = true;
 
@@ -57,6 +58,8 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/forgot" element={<Forgot />} />
         <Route path="/resetpassword/:resetToken" element={<Reset />} />
+        <Route path="/loader" element={<LoaderDiv />} />
+
 
         <Route
           path="/dashboard"
