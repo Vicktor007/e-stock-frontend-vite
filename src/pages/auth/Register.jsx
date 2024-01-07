@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { SET_LOGIN, SET_NAME } from "../../redux/features/auth/authSlice";
 import Loader from "../../components/loader/Loader";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 const initialState = {
   name: "",
@@ -21,6 +22,7 @@ const Register = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setformData] = useState(initialState);
+  const [visible, setVisible] = useState(false);
   const { name, email, password, password2 } = formData;
 
   const handleInputChange = (e) => {
@@ -90,21 +92,48 @@ const Register = () => {
               onChange={handleInputChange}
             />
             <input
-              type="password"
+              type={visible ? "text" : "password"}
               placeholder="Password"
               required
               name="password"
               value={password}
               onChange={handleInputChange}
             />
+            {/* {visible ? (
+                  <AiOutlineEye
+                    className="relative left-2 bottom-2 cursor-pointer"
+                    size={25}
+                    onClick={() => setVisible(false)}
+                  />
+                ) : (
+                  <AiOutlineEyeInvisible
+                    className="relative left-2 bottom-2 cursor-pointer"
+                    size={25}
+                    onClick={() => setVisible(true)}
+                  />
+                )} */}
             <input
-              type="password"
+              type={visible ? "text" : "password"}
               placeholder="Confirm Password"
               required
               name="password2"
               value={password2}
               onChange={handleInputChange}
+              
             />
+            {/* {visible ? (
+                  <AiOutlineEye
+                    className="relative left-2 bottom-2 cursor-pointer"
+                    size={25}
+                    onClick={() => setVisible(false)}
+                  />
+                ) : (
+                  <AiOutlineEyeInvisible
+                    className="relative left-2 bottom-2 cursor-pointer"
+                    size={25}
+                    onClick={() => setVisible(true)}
+                  />
+                )} */}
             <button type="submit" className="--btn --btn-primary --btn-block">
               Register
             </button>

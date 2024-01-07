@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styles from "./auth.module.scss";
+import "./icon.css";
 import { BiLogIn } from "react-icons/bi";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import Card from "../../components/card/Card";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -19,6 +21,9 @@ const Login = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setformData] = useState(initialState);
+
+  const [visible, setVisible] = useState(false);
+
   const { email, password } = formData;
 
   const handleInputChange = (e) => {
@@ -74,13 +79,27 @@ const Login = () => {
               onChange={handleInputChange}
             />
             <input
-              type="password"
+              type={visible ? "text" : "password"}
               placeholder="Password"
               required
               name="password"
               value={password}
               onChange={handleInputChange}
+              autoComplete="current-password"
             />
+            {visible ? (
+                  <AiOutlineEye
+                    className="relative left-2 bottom-2 cursor-pointer"
+                    size={25}
+                    onClick={() => setVisible(false)}
+                  />
+                ) : (
+                  <AiOutlineEyeInvisible
+                    className="relative left-2 bottom-2 cursor-pointer"
+                    size={25}
+                    onClick={() => setVisible(true)}
+                  />
+                )}
             <button type="submit" className="--btn --btn-primary --btn-block">
               Login
             </button>
