@@ -11,7 +11,7 @@ const Sidebar = ({ children }) => {
 
   
 
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
   const navigate = useNavigate();
 
