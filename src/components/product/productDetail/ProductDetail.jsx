@@ -106,7 +106,9 @@ let displayExpiryDate = expiryDate === "expired" ? "expired" : expiryString;
               <b>&rarr; Total Value in stock : </b> {"$"}
               {product.price * product.quantity}
             </p>
-            <p>
+            { product.production_date ? (
+              <>
+                <p>
               <b>&rarr; Production Date : </b> 
               {product.production_date}
             </p>
@@ -116,6 +118,10 @@ let displayExpiryDate = expiryDate === "expired" ? "expired" : expiryString;
                <b>&rarr; Expires in : </b> 
                {displayExpiryDate}
             </p>
+              </>
+            ): (<p>
+              <b>&gt;&gt;&gt;Not a perishable product</b>
+            </p>)}
 
             <hr />
             <p>{product.description}</p>
