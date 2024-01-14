@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { getProductDetails } from "../../../redux/features/product/productSlice";
 import Card from "../../card/Card";
-import {SpinnerImg} from "../../loader/Loader";
+import Loader, {SpinnerImg} from "../../loader/Loader";
 import calculateExpiryDate from '../../../utilities/expiry';
 import stockStatus from '../../../utilities/stockStatus';
 import "./limitedpd.scss";
@@ -51,7 +51,7 @@ const LimitedProductDetail = () => {
   return (
     <div className="p-detail --pad">
       <h3 className="--mt p-title">Product Detail</h3>
-      {isLoading && <SpinnerImg classes="spinner" />}
+      {isLoading && <Loader />}
       <Card cardClass="card">
         {product && (
           <div className="detail">

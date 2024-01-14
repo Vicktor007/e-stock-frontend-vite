@@ -5,11 +5,11 @@ import useRedirectLoggedOutUser from "../../../customHook/useRedirectLoggedOutUs
 import { selectIsLoggedIn } from "../../../redux/features/auth/authSlice";
 import { getProduct } from "../../../redux/features/product/productSlice";
 import Card from "../../card/Card";
-import {SpinnerImg} from "../../loader/Loader";
 import calculateExpiryDate from '../../../utilities/expiry';
 import stockStatus from '../../../utilities/stockStatus';
 import "./ProductDetail.scss";
 import { toast } from "react-toastify";
+import Loader from "../../loader/Loader";
 
 
 
@@ -65,14 +65,16 @@ let displayExpiryDate = expiryDate === "expired" ? "expired" : expiryString;
   return (
     <div className="product-detail --pad">
       <h3 className="--mt">Product Detail</h3>
-      {isLoading && <SpinnerImg classes="spinner" />}
+     
+      {isLoading && <Loader/>}
       <Card cardClass="card">
         
         {product && (
           <div className="detail">
             <Card cardClass="group image-card">
             {isLoading ? (
-              <SpinnerImg classes="spinner-visibility"/>
+              
+              <></>
               ) : (
             product?.image ? (
             <img
