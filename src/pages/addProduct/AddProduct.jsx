@@ -59,11 +59,11 @@ const AddProduct = () => {
     formData.append("description", description);
     formData.append("image", productImage);
 
-    // console.log(...formData);
 
-    await dispatch(createProduct(formData));
 
-    navigate("/dashboard");
+    const newProduct = await dispatch(createProduct(formData));
+    navigate(`/product-detail/${newProduct.payload._id}`);
+
   };
 
   return (

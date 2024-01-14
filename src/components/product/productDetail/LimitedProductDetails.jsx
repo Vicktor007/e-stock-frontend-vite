@@ -50,9 +50,16 @@ const LimitedProductDetail = () => {
 
   return (
     <div className="p-detail --pad">
-      <h3 className="--mt p-title">Product Detail</h3>
+      <ShowOnLogin>
+
+          <Link to={"/dashboard"} className="back-button">Go back</Link>
+
+      </ShowOnLogin>
+        
+      
       {isLoading && <Loader />}
       <Card cardClass="card">
+      <h3 className="--mt p-title">Product Detail</h3>
         {product && (
           <div className="detail">
             <Card cardClass="group image-card">

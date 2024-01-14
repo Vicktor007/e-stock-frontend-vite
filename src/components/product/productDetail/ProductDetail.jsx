@@ -64,11 +64,11 @@ let displayExpiryDate = expiryDate === "expired" ? "expired" : expiryString;
 
   return (
     <div className="product-detail --pad">
-      <h3 className="--mt">Product Detail</h3>
+      
      
       {isLoading && <Loader/>}
       <Card cardClass="card">
-        
+      <h3 className="--mt p-title">Product Detail</h3>
         {product && (
           <div className="detail">
             <Card cardClass="group image-card">
