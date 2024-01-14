@@ -24,7 +24,6 @@ const AddProduct = () => {
   const [product, setProduct] = useState(initialState);
   const [productImage, setProductImage] = useState("");
   const [imagePreview, setImagePreview] = useState(null);
-  // const [description, setDescription] = useState("");
 
   const isLoading = useSelector(selectIsLoading);
 
@@ -75,8 +74,6 @@ const AddProduct = () => {
         product={product}
         productImage={productImage}
         imagePreview={imagePreview}
-        // description={description}
-        // setDescription={setDescription}
         handleInputChange={handleInputChange}
         handleImageChange={handleImageChange}
         saveProduct={saveProduct}
