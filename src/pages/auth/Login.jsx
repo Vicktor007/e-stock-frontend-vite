@@ -70,6 +70,7 @@ const Login = () => {
           <h2>Login</h2>
 
           <form onSubmit={login}>
+            <label className="demo">Demo Email- admin@gmail.com</label>
             <input
               type="email"
               placeholder="Email"
@@ -78,6 +79,7 @@ const Login = () => {
               value={email}
               onChange={handleInputChange}
             />
+            <label className="demo" >Demo password- admin112</label>
             <input
               type={visible ? "text" : "password"}
               placeholder="Password"
