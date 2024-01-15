@@ -12,11 +12,11 @@ const Home = () => {
   
 
   return (
-    <div className="home displayflex-row">
-      <section className="container hero">
+    <div className="home  displayflex-row">
+      <section className="container  hero">
         <div className="hero-text">
-          <h2>Inventory {"&"} Stock Management Solution</h2>
-          <p>
+          <h2 className="hero-h1">Inventory {"&"} Stock Management Solution</h2>
+          <p className="hero-paragraph">
             Inventory system to control and manage proucts in the warehouse in
             real timeand integrated to make it easier to develop your business.
           </p>
@@ -32,7 +32,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="hero-image">
+        <div className="hero-image ">
           <img src={heroImg} alt="Inventory" />
         </div>
       </section>
