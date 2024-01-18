@@ -11,10 +11,12 @@ import {
   CALC_EXPIRED_PRODUCTS,
   CALC_OUTOFSTOCK,
   CALC_STORE_VALUE,
+  CALC_EXPIRING_IN_THREE_MONTHS,
   selectCategory,
   selectExpiredProducts,
   selectOutOfStock,
   selectTotalStoreValue,
+  selectThreeMonthsExpiryTracker,
 } from "../../../redux/features/product/productSlice";
 import { Link } from "react-router-dom";
 import { MdAddShoppingCart } from "react-icons/md";
@@ -36,13 +38,15 @@ const ProductSummary = ({ products }) => {
   const totalStoreValue = useSelector(selectTotalStoreValue);
   const outOfStock = useSelector(selectOutOfStock);
   const category = useSelector(selectCategory);
-  const expired_products = useSelector(selectExpiredProducts)
+  const expired_products = useSelector(selectExpiredProducts);
+  const expires_in_three_months =useSelector(selectThreeMonthsExpiryTracker);
 
   useEffect(() => {
     dispatch(CALC_STORE_VALUE(products));
     dispatch(CALC_OUTOFSTOCK(products));
     dispatch(CALC_CATEGORY(products));
     dispatch(CALC_EXPIRED_PRODUCTS(products));
+    dispatch(CALC_EXPIRING_IN_THREE_MONTHS(products));
   }, [dispatch, products]);
 
   return (
@@ -78,6 +82,12 @@ const ProductSummary = ({ products }) => {
           title={"Expired Products"}
           count={expired_products}
           bgColor="card3"
+        />
+        <InfoBox
+          icon={expiredProductsIcon}
+          title={"Expiring Products"}
+          count={expires_in_three_months}
+          bgColor="card5"
         />
       </div>
 

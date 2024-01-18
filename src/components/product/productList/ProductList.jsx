@@ -119,12 +119,12 @@ const ProductList = ({ products, isLoading }) => {
                 {currentItems.map((product, index) => {
             const { _id, name, category, price, quantity, expiry_date } = product;
             const isExpired = moment().isAfter(moment(expiry_date));
-            const isExpiring = moment().isBefore(moment(expiry_date)) && moment().add(1, 'months').isAfter(moment(expiry_date));
+            const isExpiring = moment().isBefore(moment(expiry_date)) && moment().add(3, 'months').isAfter(moment(expiry_date));
              let backgroundColor;
               if (isExpired) {
                backgroundColor = '#f72d66';
                 } else if (isExpiring) {
-                  backgroundColor = 'yellow';
+                  backgroundColor = 'rgb(189, 189, 47)';
                    } else {
                    backgroundColor = 'transparent';
                      }

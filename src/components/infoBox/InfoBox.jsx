@@ -6,7 +6,7 @@ const InfoBox = ({ bgColor, title, count, icon }) => {
     <div className={`info-box ${bgColor}`}>
       <span className="info-icon --color-white">{icon}</span>
       <span className="info-text">
-        <p>{title}</p>
+        <p><b>{title}</b></p>
         <h4>{count}</h4>
       </span>
     </div>

@@ -190,6 +190,24 @@ const productSlice = createSlice({
       }
       state.expired_products = count;
     },
+
+    CALC_EXPIRING_IN_THREE_MONTHS(state, action) {
+      const products = action.payload;
+      let count = 0;
+      if (Array.isArray(products)) {
+        products.forEach((item) => {
+          const expiryDate = new Date(item.expiry_date);
+          const today = new Date();
+          const threeMonthsFromNow = new Date();
+          threeMonthsFromNow.setMonth(today.getMonth() + 3);
+          if (expiryDate >= today && expiryDate <= threeMonthsFromNow) {
+            count += 1;
+          }
+        });
+      }
+      state.expiring_in_three_months = count;
+    },
+  
     
   },
   extraReducers: (builder) => {
@@ -295,7 +313,7 @@ const productSlice = createSlice({
   },
 });
 
-export const { CALC_STORE_VALUE, CALC_OUTOFSTOCK, CALC_CATEGORY, CALC_EXPIRED_PRODUCTS } =
+export const { CALC_STORE_VALUE, CALC_OUTOFSTOCK, CALC_CATEGORY, CALC_EXPIRED_PRODUCTS, CALC_EXPIRING_IN_THREE_MONTHS } =
   productSlice.actions;
 
 export const selectIsLoading = (state) => state.product.isLoading;
@@ -304,6 +322,7 @@ export const selectTotalStoreValue = (state) => state.product.totalStoreValue;
 export const selectOutOfStock = (state) => state.product.outOfStock;
 export const selectCategory = (state) => state.product.category;
 export const selectExpiredProducts = (state) => state.product.expired_products;
+export const selectThreeMonthsExpiryTracker= (state) => state.product.expiring_in_three_months;
 
 
 export default productSlice.reducer;
