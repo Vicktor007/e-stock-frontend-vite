@@ -31,15 +31,19 @@
 }
 
 .button{
-  font-size: 30px;
-  border-radius: 5px;
-  padding: 1rem;
-  display: flex;
-  align-items: center;
+  border-radius: 8px;
   margin: 15px 0 20px 0;
 }
 
-.button:hover{
+.button > .link:hover{
   background-color: #284ea7;
   color: white;
+}
+
+.button >  .link {
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
 }

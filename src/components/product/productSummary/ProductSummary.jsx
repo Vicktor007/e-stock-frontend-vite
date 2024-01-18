@@ -91,7 +91,8 @@ const ProductSummary = ({ products }) => {
         />
       </div>
 
-      <Link to={"/add-product/"}><button className="button"> <MdAddShoppingCart size={35}/>Add Product</button></Link>
+      <button className="button"><Link className="link" to={"/add-product/"}> <MdAddShoppingCart size={35}/>Add Product</Link></button>
+
     </div>
   );
 };
