@@ -12,7 +12,7 @@ const filterSlice = createSlice({
       const { products, search } = action.payload;
       const currentDate = new Date();
       const expiryDate = new Date();
-      expiryDate.setMonth(expiryDate.getMonth() + 3); // set the expiry date to three months from now
+      expiryDate.setMonth(expiryDate.getMonth() + 3); // set the expiry date to any months from now
       let tempProducts = [];
 
       if (Array.isArray(products)) {
