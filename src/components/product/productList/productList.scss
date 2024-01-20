@@ -21,18 +21,19 @@
       }
 
       th {
-        border: 1px solid #eee;
+        // border: 1px solid #eee;
+        text-align: center;
       }
 
       th,
       td {
         vertical-align: top;
-        text-align: left;
+        text-align: center;
         padding: 8px;
 
         &.icons {
           display: flex;
-          justify-content: flex-start;
+          justify-content: center;
           align-items: center;
           > * {
             margin-right: 7px;

@@ -13,6 +13,7 @@
   color: #fff;
   transform: translateY(0);
   transition: all 0.3s;
+  padding: 1rem;
 
   // background-color: green;
 
@@ -28,6 +29,10 @@
   }
   .info-text > * {
     color: #fff;
+  }
+
+  .info-text {
+    height: 90%;
   }
 
   // .card {

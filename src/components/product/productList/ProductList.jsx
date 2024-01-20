@@ -108,7 +108,7 @@ const ProductList = ({ products, isLoading }) => {
                   <th>Name</th>
                   <th>Category</th>
                   <th>Price</th>
-                  <th>Quantity</th>
+                  <th className="center">Quantity</th>
                   <th>Value</th>
                   <th>Actions</th>
                 </tr>
@@ -120,21 +120,24 @@ const ProductList = ({ products, isLoading }) => {
             const { _id, name, category, price, quantity, expiry_date } = product;
             const isExpired = moment().isAfter(moment(expiry_date));
             const isExpiring = moment().isBefore(moment(expiry_date)) && moment().add(3, 'months').isAfter(moment(expiry_date));
+            const outOfStock = product?.quantity <= 0;
              let backgroundColor;
               if (isExpired) {
                backgroundColor = '#f72d66';
                 } else if (isExpiring) {
                   backgroundColor = 'rgb(189, 189, 47)';
-                   } else {
-                   backgroundColor = 'transparent';
-                     }
+                   } else if (outOfStock) {
+                   backgroundColor = '#de819b';
+                     } else {
+                      backgroundColor = 'transparent';
+                        }
                     return (
                        <tr key={_id} style={{ backgroundColor }}>
                       <td>{index + 1}</td>
                        <td><NavLink to={`/product-detail/${_id}`}>{name ? shortenText(name, 16) : ''}</NavLink></td>
                        <td>{category}</td>
                        <td>{"$"}{price}</td>
-                       <td>{quantity}</td>
+                       <td className="center">{quantity}</td>
                        <td>{"$"}{price * quantity}</td>
                        <td className="icons bgw">
                         <span>

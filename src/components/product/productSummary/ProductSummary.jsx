@@ -69,7 +69,7 @@ const ProductSummary = ({ products }) => {
           icon={outOfStockIcon}
           title={"Out of Stock"}
           count={outOfStock}
-          bgColor="card3"
+          bgColor="card0"
         />
         <InfoBox
           icon={categoryIcon}
