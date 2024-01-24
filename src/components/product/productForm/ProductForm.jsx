@@ -1,15 +1,19 @@
 import React from "react";
 import Card from "../../card/Card";
-
-
 import "./ProductForm.scss";
+
 
 const ProductForm = ({
   product,
-  imagePreview,
   handleInputChange,
+  imagePreview,
   handleImageChange,
   saveProduct,
+  showWidget,
+  handleRemoveImages,
+  imageToRemove,
+  images,
+  productEdit
 }) => {
   return (
     <div className="add-product displayflex">
@@ -25,7 +29,6 @@ const ProductForm = ({
               name="image"
               onChange={(e) => handleImageChange(e)}
             />
-
             {imagePreview != null ? (
               <div className="image-preview">
                 <img src={imagePreview} alt="product" />
@@ -85,6 +88,34 @@ const ProductForm = ({
             value={product?.expiry_date || ''}
             onChange={handleInputChange}
           />
+          <Card>
+          
+                            <button type="button" onClick={showWidget} >
+                              Upload documents
+                            </button>
+                            <div className="documents-preview-container">
+                                {images.map((image) => (
+                                    <div key={image?.public_id} className="documents-preview">
+                                        <img src={image?.url} />
+                                        {imageToRemove != image?.public_id && <i className="fa fa-times-circle" onClick={() => handleRemoveImages(image)}></i>}
+                                    </div>
+                                ))}
+                            </div>
+                        
+          </Card>{
+            productEdit && <Card>
+
+            <div className="documents-preview-container">
+                {productEdit?.images.map((image) => (
+                    <div key={image?.public_id} className="documents-preview">
+                        <img src={image?.url} />
+                        {imageToRemove != image?.public_id && <i className="fa fa-times-circle" onClick={() => handleRemoveImages(image)}></i>}
+                    </div>
+                ))}
+            </div>
+        
+</Card>
+          }
           <label>Product Description:</label>
             <textarea
               cols="30"

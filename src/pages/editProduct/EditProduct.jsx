@@ -10,6 +10,7 @@ import {
   selectProduct,
   updateProduct,
 } from "../../redux/features/product/productSlice";
+import "./ProductForm.scss";
 
 const EditProduct = () => {
   const { id } = useParams();
@@ -22,8 +23,12 @@ const EditProduct = () => {
   const [product, setProduct] = useState(productEdit);
   const [productImage, setProductImage] = useState("");
   const [imagePreview, setImagePreview] = useState(null);
+  const [images, setImages] = useState([]);
+  const [imageToRemove, setImageToRemove] = useState(null);
   
  
+
+    
 
   useEffect(() => {
     dispatch(getProduct(id));
@@ -44,10 +49,7 @@ const EditProduct = () => {
     setProduct({ ...product, [name]: value });
   };
 
-  const handleImageChange = (e) => {
-    setProductImage(e.target.files[0]);
-    setImagePreview(URL.createObjectURL(e.target.files[0]));
-  };
+  
 
   const saveProduct = async (e) => {
     e.preventDefault();
@@ -60,6 +62,9 @@ const EditProduct = () => {
     formData.append("production_date", product?.production_date);
     formData.append("expiry_date", product?.expiry_date);
     formData.append("description", product?.description);
+    if (images) {
+      formData.append("images", JSON.stringify(images));
+    };
     if (productImage) {
       formData.append("image", productImage);
     }
@@ -71,18 +76,49 @@ const EditProduct = () => {
     navigate("/dashboard");
   };
 
+  function showWidget() {
+    const widget = window.cloudinary.createUploadWidget(
+        {
+            cloudName: "vickdawson",
+            uploadPreset: "lzye0s0v",
+        },
+        (error, result) => {
+            if (!error && result.event === "success") {
+                setImages((prev) => [...prev, { url: result.info.url, public_id: result.info.public_id }]);
+            }
+        }
+    );
+    widget.open();
+}
+
+  async function handleRemoveImages(imgObj) {
+    setImageToRemove(imgObj.public_id);
+    try {
+        const res = await axios.delete(`/api/images/${imgObj.public_id}/`);
+        setImageToRemove(null);
+        setImages((prev) => prev.filter((img) => img.public_id !== imgObj.public_id));
+    } catch (e) {
+        console.log(e);
+    }
+}
+
   return (
     <div className="width --pad displayflex">
       {isLoading && <Loader />}
       <h3 className="--mt">Edit Product</h3>
       <ProductForm
-        product={product}
-        productImage={productImage}
-        imagePreview={imagePreview}
-        handleInputChange={handleInputChange}
-        handleImageChange={handleImageChange}
-        saveProduct={saveProduct}
+         product={product}
+         productImage={productImage}
+         handleInputChange={handleInputChange}
+         saveProduct={saveProduct}
+         showWidget={showWidget}
+         handleRemoveImages={handleRemoveImages}
+         imageToRemove={imageToRemove}
+         images={images}
+         imagePreview={imagePreview}
+         productEdit={productEdit}
       />
+
     </div>
   );
 };

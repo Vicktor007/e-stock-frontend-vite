@@ -39,6 +39,7 @@
   justify-content: center;
   align-items: center;
   border: 1px solid #ccc;
+  flex-wrap: wrap;
 }
 
 .image-card img {
@@ -48,14 +49,13 @@
 
 .edit {
   color: #fff;
-  // margin-top: 10px;
+  margin-top: 10px;
   display: block;
   background-color: green;
   width: fit-content;
   padding-inline: 5px;
   font-size: 20px;
   border-radius: 5px;
-  height: 100%;
 }
 
 .spinner {

@@ -10,6 +10,7 @@ import stockStatus from '../../../utilities/stockStatus';
 import "./ProductDetail.scss";
 import { toast } from "react-toastify";
 import Loader from "../../loader/Loader";
+import moment from "moment";
 
 
 
@@ -58,7 +59,7 @@ let displayExpiryDate = expiryDate === "expired" ? "expired" : expiryString;
     }
 
     if (isError) {
-      toast.message("Something went rong, please reload the page");
+      toast.error("Something went rong, please reload the page");
     }
   }, [isLoggedIn, isError, message, dispatch,id]);
 
@@ -78,8 +79,8 @@ let displayExpiryDate = expiryDate === "expired" ? "expired" : expiryString;
               ) : (
             product?.image ? (
             <img
-           src={product.image.filePath}
-           alt={product.image.fileName}
+            src={product.image.filePath}
+            alt={product.image.fileName}
           />
           ) : (
           <p>No image set for this product</p>
@@ -126,15 +127,31 @@ let displayExpiryDate = expiryDate === "expired" ? "expired" : expiryString;
             </p>)}
 
             <hr />
+            
+          
+                          
+                            <Card cardClass="group image-card">
+                            
+                                {product.images.map((image) => (
+                                    
+                                        <img src={image?.url} key={image?._id}/>
+                                        
+                                    
+                                ))}
+                            
+                            </Card>
+                        
+          
+          <hr/>
             <p>{product.description}</p>
             
             <hr />
             <code className="--color-dark">
-              Created on: {product.createdAt.toLocaleString("en-US")}
+              Created on: {moment(product.createdAt).format("MMMM Do YYYY")}
             </code>
             <br />
             <code className="--color-dark">
-              Last Updated: {product.updatedAt.toLocaleString("en-US")}
+              Last Updated: {moment(product.updatedAt).format("MMMM Do YYYY")}
             </code>
             <div>
             <Link to={`/edit-product/${id}`} className="edit" >
