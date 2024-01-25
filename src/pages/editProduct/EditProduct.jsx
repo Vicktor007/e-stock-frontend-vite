@@ -11,6 +11,7 @@ import {
   updateProduct,
 } from "../../redux/features/product/productSlice";
 import "./ProductForm.scss";
+import axios from "../../Axios/axios";
 
 const EditProduct = () => {
   const { id } = useParams();
@@ -28,7 +29,6 @@ const EditProduct = () => {
   
  
 
-    
 
   useEffect(() => {
     dispatch(getProduct(id));
@@ -97,6 +97,7 @@ const EditProduct = () => {
         const res = await axios.delete(`/api/images/${imgObj.public_id}/`);
         setImageToRemove(null);
         setImages((prev) => prev.filter((img) => img.public_id !== imgObj.public_id));
+        productEdit.images((prev) => prev.filter((img) => img.public_id !== imgObj.public_id));
     } catch (e) {
         console.log(e);
     }
