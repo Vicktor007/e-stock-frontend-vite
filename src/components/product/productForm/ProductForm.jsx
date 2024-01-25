@@ -88,22 +88,26 @@ const ProductForm = ({
             value={product?.expiry_date || ''}
             onChange={handleInputChange}
           />
-          <Card>
           
-                            <button type="button" onClick={showWidget} >
-                              Upload documents
-                            </button>
-                            <div className="documents-preview-container">
-                                {images.map((image) => (
-                                    <div key={image?.public_id} className="documents-preview">
-                                        <img src={image?.url} />
-                                        {imageToRemove != image?.public_id && <i className="fa fa-times-circle" onClick={() => handleRemoveImages(image)}></i>}
-                                    </div>
-                                ))}
-                            </div>
-                        
-          </Card>{
-            productEdit && <Card>
+          {
+            images && <Card>
+          
+            <button type="button" onClick={showWidget} >
+              Upload documents
+            </button>
+            <div className="documents-preview-container">
+                {images.map((image) => (
+                    <div key={image?.public_id} className="documents-preview">
+                        <img src={image?.url} />
+                        {imageToRemove != image?.public_id && <i className="fa fa-times-circle" onClick={() => handleRemoveImages(image)}></i>}
+                    </div>
+                ))}
+            </div>
+        
+</Card>
+          }
+          {
+            productEdit?.images && productEdit?.images.length > 0 && (<Card>
 
             <div className="documents-preview-container">
                 {productEdit?.images.map((image) => (
@@ -114,9 +118,9 @@ const ProductForm = ({
                 ))}
             </div>
         
-</Card>
+</Card>)
           }
-          <label>Product Description:</label>
+          <label className="--my">Product Description:</label>
             <textarea
               cols="30"
               rows="10"

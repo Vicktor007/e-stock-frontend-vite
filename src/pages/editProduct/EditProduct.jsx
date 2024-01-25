@@ -29,11 +29,6 @@ const EditProduct = () => {
   
  
 
-
-  useEffect(() => {
-    dispatch(getProduct(id));
-  }, [dispatch, id]);
-
   useEffect(() => {
     setProduct(productEdit);
 
@@ -49,6 +44,10 @@ const EditProduct = () => {
     setProduct({ ...product, [name]: value });
   };
 
+  const handleImageChange = (e) => {
+    setProductImage(e.target.files[0]);
+    setImagePreview(URL.createObjectURL(e.target.files[0]));
+  };
   
 
   const saveProduct = async (e) => {
@@ -69,7 +68,6 @@ const EditProduct = () => {
       formData.append("image", productImage);
     }
 
-    // console.log(...formData);
 
     await dispatch(updateProduct({ id, formData }));
     await dispatch(getProducts());
@@ -96,8 +94,9 @@ const EditProduct = () => {
     try {
         const res = await axios.delete(`/api/images/${imgObj.public_id}/`);
         setImageToRemove(null);
+        dispatch(getProduct(id));
         setImages((prev) => prev.filter((img) => img.public_id !== imgObj.public_id));
-        productEdit.images((prev) => prev.filter((img) => img.public_id !== imgObj.public_id));
+        
     } catch (e) {
         console.log(e);
     }
@@ -118,6 +117,7 @@ const EditProduct = () => {
          images={images}
          imagePreview={imagePreview}
          productEdit={productEdit}
+         handleImageChange={handleImageChange}
       />
 
     </div>
