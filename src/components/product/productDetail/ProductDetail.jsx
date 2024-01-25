@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import useRedirectLoggedOutUser from "../../../customHook/useRedirectLoggedOutUser";
@@ -26,6 +26,7 @@ const ProductDetail = () => {
     (state) => state.product
   );
 
+  const [select, setSelect] = useState(0);
   
 
   
@@ -128,19 +129,32 @@ let displayExpiryDate = expiryDate === "expired" ? "expired" : expiryString;
 
             <hr />
             
-          
-                          
-                            <Card cardClass="group image-card">
-                            
-                                {product.images.map((image) => (
-                                    
-                                        <img src={image?.url} key={image?._id}/>
-                                        
-                                    
-                                ))}
-                            
-                            </Card>
+            <Card cardClass="group image-card">
+                <img
+                  src={`${product?.images[select]?.url}`}
+                  alt=""
+                  className="w-[80%]"
+                />
+                <div className="w-full flex preview-con">
+                  {
+                    product?.images.map((i, index) => (
+                      <div
+                      key={i?._id}
+                        className={" cursor-pointer documents-preview"}
+                      >
+                        <img
                         
+                          src={`${i?.url}`}
+                          alt={`${product.name}`}
+                          className="h-[200px] overflow-hidden mr-3 mt-3"
+                          onClick={() => setSelect(index)}
+                        />
+                      </div>
+        
+                    ))}
+                </div>
+              </Card>
+                          
           
           <hr/>
             <p>{product.description}</p>
