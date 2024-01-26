@@ -18,6 +18,7 @@ const LimitedProductDetail = () => {
   const { id } = useParams();
   const { product, isLoading, isError, message } = useSelector((state) => state.product);
 
+  const [select, setSelect] = useState(0);
 
   
 
