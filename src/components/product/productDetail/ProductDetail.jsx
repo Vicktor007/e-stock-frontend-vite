@@ -129,7 +129,7 @@ let displayExpiryDate = expiryDate === "expired" ? "expired" : expiryString;
 
             <hr />
             
-            <Card cardClass="group image-card">
+           {product?.images && product?.images.length > 0 && (<Card cardClass="group image-card">
                 <img
                   src={`${product?.images[select]?.url}`}
                   alt=""
@@ -154,7 +154,7 @@ let displayExpiryDate = expiryDate === "expired" ? "expired" : expiryString;
                     ))}
                 </div>
               </Card>
-                          
+                      )}    
           
           <hr/>
             <p>{product.description}</p>
