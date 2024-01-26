@@ -86,8 +86,11 @@ const LimitedProductDetail = () => {
             <p><b>→ Production Date : </b>{product.production_date}</p>
             <p><b>→ Expiry Date : </b> {product.expiry_date}</p>
             <p><b>→ Expires in : </b>{displayExpiryDate}</p>
-            <hr />
-            <Card cardClass="group image-card">
+            
+           {product?.images && product?.images.length > 0 && (
+            <>
+           <hr />
+           <Card cardClass="group image-card">
                 <img
                   src={`${product?.images[select]?.url}`}
                   alt=""
@@ -112,6 +115,7 @@ const LimitedProductDetail = () => {
                     ))}
                 </div>
               </Card>
+              </>)}
             <hr/>
             <p>{product.description}</p>
             <hr />

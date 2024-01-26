@@ -127,9 +127,12 @@ let displayExpiryDate = expiryDate === "expired" ? "expired" : expiryString;
               <b>&gt;&gt;&gt;Not a perishable product</b>
             </p>)}
 
-            <hr />
             
-           {product?.images && product?.images.length > 0 && (<Card cardClass="group image-card">
+            
+           {product?.images && product?.images.length > 0 && (
+           <>
+           <hr />
+           <Card cardClass="group image-card">
                 <img
                   src={`${product?.images[select]?.url}`}
                   alt=""
@@ -154,7 +157,7 @@ let displayExpiryDate = expiryDate === "expired" ? "expired" : expiryString;
                     ))}
                 </div>
               </Card>
-                      )}    
+              </> )}    
           
           <hr/>
             <p>{product.description}</p>
