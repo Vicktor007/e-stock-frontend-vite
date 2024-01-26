@@ -59,15 +59,17 @@ const AddProduct = () => {
         {
             cloudName: "vickdawson",
             uploadPreset: "lzye0s0v",
+            secure: true, 
         },
         (error, result) => {
             if (!error && result.event === "success") {
-                setImages((prev) => [...prev, { url: result.info.url, public_id: result.info.public_id }]);
+                setImages((prev) => [...prev, { url: result.info.secure_url, public_id: result.info.public_id }]);
             }
         }
     );
     widget.open();
 }
+
 
   async function handleRemoveImages(imgObj) {
     setImageToRemove(imgObj.public_id);
