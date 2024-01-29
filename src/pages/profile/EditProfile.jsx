@@ -63,8 +63,12 @@ const EditProfile = () => {
           { method: "post", body: image }
         );
         const imgData = await response.json();
-        imageURL = imgData.url.toString();
+       imageURL = imgData.url.toString();
 
+       // Ensure the URL is HTTPS
+      if (imageURL.startsWith("http://")) {
+        imageURL = "https://" + imageURL.substring(7);
+       }
         // Save Profile
         const formData = {
           name: profile.name,
