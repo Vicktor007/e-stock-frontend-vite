@@ -15,6 +15,7 @@ import {
 import { Link, NavLink } from "react-router-dom";
 import { FILTER_PRODUCTS, selectFilteredProducts } from "../../../redux/features/product/filterSlice";
 import moment from 'moment';
+import button from "../../../data/button";
 
 
 
@@ -25,6 +26,10 @@ const ProductList = ({ products, isLoading }) => {
   const [search, setSearch] = useState("");
   const filteredProducts = useSelector(selectFilteredProducts);
 
+  const handleButtonClick = (title) => {
+    setSearch(title);
+  };
+  
   const dispatch = useDispatch();
 
   const shortenText = (text, n) => {
@@ -87,6 +92,9 @@ const ProductList = ({ products, isLoading }) => {
           <span>
             <h3>Inventory Items</h3>
           </span>
+          {button.map((item, index) => {
+          return <span className="setSearch" key={index} onClick={() => handleButtonClick(`${item.title}`)}>{item.name} </span>;
+        })}
           <span>
             <Search
               value={search}

@@ -10,6 +10,27 @@
       max-width: 300px;
     }
 
+    .setSearch {
+      font-size: 1.4rem;
+      font-weight: bold;
+      border: 2px solid black;
+      max-width: 15rem;
+      text-align: center;
+      max-height: 8rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 5px;
+      padding: 10px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .setSearch:hover {
+      background-color: #db4771;
+      color: #fff;
+    }
+
     table {
       border-collapse: collapse;
       width: 100%;
