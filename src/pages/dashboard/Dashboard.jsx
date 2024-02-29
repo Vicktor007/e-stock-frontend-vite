@@ -32,7 +32,7 @@ const Dashboard = () => {
 
   return (
     <div className="--pad">
-      <ProductSummary products={products} />
+      {/* <ProductSummary products={products} /> */}
       <ProductList products={products} isLoading={isLoading} />
     </div>
   );

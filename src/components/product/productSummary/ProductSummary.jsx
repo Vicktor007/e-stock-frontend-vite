@@ -33,7 +33,7 @@ export const formatNumbers = (x) => {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
 
-const ProductSummary = ({ products }) => {
+const ProductSummary = ({ products, handleButtonClick }) => {
   const dispatch = useDispatch();
   const totalStoreValue = useSelector(selectTotalStoreValue);
   const outOfStock = useSelector(selectOutOfStock);
@@ -70,6 +70,8 @@ const ProductSummary = ({ products }) => {
           title={"Out of Stock"}
           count={outOfStock}
           bgColor="card0"
+          searchText="out of stock"
+          handleButtonClick={handleButtonClick}
         />
         <InfoBox
           icon={categoryIcon}
@@ -82,12 +84,16 @@ const ProductSummary = ({ products }) => {
           title={"Expired Products"}
           count={expired_products}
           bgColor="card3"
+          searchText="expired"
+          handleButtonClick={handleButtonClick}
         />
         <InfoBox
           icon={expiredProductsIcon}
           title={"Expiring Products"}
           count={expires_in_three_months}
           bgColor="card5"
+          searchText="expiring"
+          handleButtonClick={handleButtonClick}
         />
       </div>
 

@@ -15,7 +15,7 @@ import {
 import { Link, NavLink } from "react-router-dom";
 import { FILTER_PRODUCTS, selectFilteredProducts } from "../../../redux/features/product/filterSlice";
 import moment from 'moment';
-import button from "../../../data/button";
+import ProductSummary from "../productSummary/ProductSummary";
 
 
 
@@ -26,8 +26,8 @@ const ProductList = ({ products, isLoading }) => {
   const [search, setSearch] = useState("");
   const filteredProducts = useSelector(selectFilteredProducts);
 
-  const handleButtonClick = (title) => {
-    setSearch(title);
+  const handleButtonClick = (searchText) => {
+    setSearch(searchText);
   };
   
   const dispatch = useDispatch();
@@ -86,15 +86,14 @@ const ProductList = ({ products, isLoading }) => {
 
   return (
     <div className="product-list">
+      <ProductSummary products={products} handleButtonClick={handleButtonClick}/>
       <hr />
       <div className="table">
         <div className="--flex-between --flex-dir-column">
           <span>
             <h3>Inventory Items</h3>
           </span>
-          {button.map((item, index) => {
-          return <span className="setSearch" key={index} onClick={() => handleButtonClick(`${item.title}`)}>{item.name} </span>;
-        })}
+          
           <span>
             <Search
               value={search}
