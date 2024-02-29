@@ -3,7 +3,7 @@ import "./InfoBox.scss";
 
 const InfoBox = ({ bgColor, title, searchText = "text", count, icon, handleButtonClick }) => {
   return (
-    <div className={`info-box ${bgColor}`} onClick={() => handleButtonClick(searchText)}>
+    <div className={`info-box ${bgColor}`} onClick={() => handleButtonClick && handleButtonClick(searchText)}>
       <span className="info-icon --color-white">{icon}</span>
       <span className="info-text">
         <p><b>{title}</b></p>
@@ -13,4 +13,3 @@ const InfoBox = ({ bgColor, title, searchText = "text", count, icon, handleButto
   );
 };
 export default InfoBox;
-

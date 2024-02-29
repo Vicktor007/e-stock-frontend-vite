@@ -123,7 +123,7 @@ const ProductList = ({ products, isLoading }) => {
 
               <tbody>
                 
-                {currentItems.map((product, index) => {
+                {currentItems.length === 0 ? (<tr><td>---No product found---</td></tr>) : (currentItems.map((product, index) => {
             const { _id, name, category, price, quantity, expiry_date } = product;
             const isExpired = moment().isAfter(moment(expiry_date));
             const isExpiring = moment().isBefore(moment(expiry_date)) && moment().add(3, 'months').isAfter(moment(expiry_date));
@@ -167,7 +167,7 @@ const ProductList = ({ products, isLoading }) => {
                         </td>
                        </tr>
                         );
-                      })}
+                      }))}
 
               </tbody>
             </table>
