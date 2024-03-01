@@ -58,6 +58,8 @@ const ProductSummary = ({ products, handleButtonClick }) => {
           title={"Total Products"}
           count={products.length}
           bgColor="card1"
+          handleButtonClick={handleButtonClick}
+          searchText=""
         />
         <InfoBox
           icon={earningIcon}

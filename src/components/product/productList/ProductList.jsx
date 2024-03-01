@@ -27,7 +27,11 @@ const ProductList = ({ products, isLoading }) => {
   const filteredProducts = useSelector(selectFilteredProducts);
 
   const handleButtonClick = (searchText) => {
-    setSearch(searchText);
+    if(searchText) {
+      setSearch(searchText);
+    } else {
+      setSearch("")
+    }
   };
   
   const dispatch = useDispatch();
