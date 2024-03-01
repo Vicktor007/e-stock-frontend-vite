@@ -9,7 +9,7 @@ const Search = ({ value, onChange }) => {
     if(value) {
       inputRef.current?.focus();
     } else {
-      null
+      return null
     }
     
   }, [value])
