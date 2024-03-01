@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { SpinnerImg } from "../../loader/Loader";
 import "./productList.scss";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
@@ -84,6 +84,9 @@ const ProductList = ({ products, isLoading }) => {
     dispatch(FILTER_PRODUCTS({ products, search }));
   }, [products, search, dispatch]);
 
+  
+
+  
   return (
     <div className="product-list">
       <ProductSummary products={products} handleButtonClick={handleButtonClick}/>
@@ -96,6 +99,7 @@ const ProductList = ({ products, isLoading }) => {
           
           <span>
             <Search
+            handleButtonClick={handleButtonClick}
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
