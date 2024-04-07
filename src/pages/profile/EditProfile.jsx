@@ -30,18 +30,20 @@ const EditProfile = () => {
   };
   const [profile, setProfile] = useState(initialState);
   const [profileImage, setProfileImage] = useState("");
+  const [imagePreview, setImagePreview] = useState(null);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setProfile({ ...profile, [name]: value });
   };
 
-  // const handleImageChange = (e) => {
-  //   setProfileImage(e.target.files[0]);
-  // };
+
 
   const handleImageChange = (e) => {
-    setProfileImage(URL.createObjectURL(e.target.files[0]));
+
+    setProfileImage(e.target.files[0]);
+
+    setImagePreview(URL.createObjectURL(e.target.files[0]));
   };
   
   // ...
@@ -87,7 +89,7 @@ const EditProfile = () => {
         };
 
          await updateUser(formData);
-       
+         URL.revokeObjectURL(imagePreview);
         toast.success("User updated");
         navigate("/profile");
         setIsLoading(false);
@@ -95,6 +97,7 @@ const EditProfile = () => {
     } catch (error) {
       
       setIsLoading(false);
+      URL.revokeObjectURL(imagePreview);
       toast.error(error.message);
     }
   };
@@ -105,7 +108,7 @@ const EditProfile = () => {
 
       <Card cardClass={"card --flex-dir-column"}>
         <span className="profile-photo">
-          <img src={ profileImage || user?.photo} alt="profilepic" />
+          <img src={ imagePreview || user?.photo} alt="profilepic" />
         </span>
         <form className="--form-control --m" onSubmit={saveProfile}>
           <span className="profile-data">
