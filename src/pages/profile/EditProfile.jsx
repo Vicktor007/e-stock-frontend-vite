@@ -36,9 +36,18 @@ const EditProfile = () => {
     setProfile({ ...profile, [name]: value });
   };
 
+  // const handleImageChange = (e) => {
+  //   setProfileImage(e.target.files[0]);
+  // };
+
   const handleImageChange = (e) => {
-    setProfileImage(e.target.files[0]);
+    setProfileImage(URL.createObjectURL(e.target.files[0]));
   };
+  
+  // ...
+  
+  
+  
 
   const saveProfile = async (e) => {
     e.preventDefault();
@@ -96,7 +105,7 @@ const EditProfile = () => {
 
       <Card cardClass={"card --flex-dir-column"}>
         <span className="profile-photo">
-          <img src={user?.photo} alt="profilepic" />
+          <img src={ profileImage || user?.photo} alt="profilepic" />
         </span>
         <form className="--form-control --m" onSubmit={saveProfile}>
           <span className="profile-data">
